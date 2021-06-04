@@ -8,9 +8,9 @@ struct ArrayList
 {
   int *elements;
   int length;
-  void (*hello)(void);
   void (*deinit)(struct ArrayList *);
   void (*push)(struct ArrayList *, int);
+  int (*at)(struct ArrayList, int);
 };
 
 void deinit(struct ArrayList *arraylist)
@@ -25,14 +25,19 @@ void push(struct ArrayList *arraylist, int el)
   arraylist->length++;
 }
 
+int at(struct ArrayList arraylist, int el)
+{
+  return arraylist.elements[el];
+}
+
 struct ArrayList init()
 {
   return (struct ArrayList){
       .elements = malloc(0 * sizeof(int)),
       .length = 0,
-      .hello = &hello,
       .deinit = &deinit,
       .push = &push,
+      .at = &at,
   };
 }
 

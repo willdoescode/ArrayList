@@ -9,7 +9,7 @@ int main()
   x.push(&x, 4);
   x.push(&x, 5);
   for (int i = 0; i < x.length; i++)
-    printf("%d, %d\n", x.elements[i], x.elements[i]);
+    printf("%d\n", x.at(x, i));
 
   x.deinit(&x);
 
