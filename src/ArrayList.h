@@ -1,6 +1,4 @@
 #pragma once
-#ifndef _ARRAYLIST_H_
-#define _ARRAYLIST_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -51,5 +49,3 @@ struct ArrayList init()
       .at = &at,
   };
 }
-
-#endif // !_ARRAYLIST_H_
