@@ -11,6 +11,7 @@ struct ArrayList
   void (*deinit)(struct ArrayList *);
   void (*push)(struct ArrayList *, int);
   int (*at)(struct ArrayList, int);
+  int (*pop)(struct ArrayList *);
 };
 
 void deinit(struct ArrayList *self)
@@ -33,6 +34,12 @@ void push(struct ArrayList *self, int el)
   self->length++;
 }
 
+int pop(struct ArrayList *self)
+{
+  self->length--;
+  return self->elements[self->length];
+}
+
 int at(struct ArrayList self, int el)
 {
   return self.elements[el];
@@ -47,5 +54,6 @@ struct ArrayList init()
       .deinit = &deinit,
       .push = &push,
       .at = &at,
+      .pop = &pop,
   };
 }
