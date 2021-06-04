@@ -9,6 +9,7 @@ struct ArrayList
 {
   int *elements;
   int length;
+  int capacity;
   void (*deinit)(struct ArrayList *);
   void (*push)(struct ArrayList *, int);
   int (*at)(struct ArrayList, int);
@@ -21,7 +22,15 @@ void deinit(struct ArrayList *arraylist)
 
 void push(struct ArrayList *arraylist, int el)
 {
-  arraylist->elements = realloc(arraylist->elements, arraylist->length * sizeof(int));
+  if (arraylist->length < arraylist->capacity)
+  {
+    arraylist->elements[arraylist->length] = el;
+    arraylist->length++;
+    return;
+  }
+  // arraylist->elements = realloc(arraylist->elements, arraylist->length * sizeof(int));
+
+  arraylist->elements = realloc(arraylist->elements, arraylist->capacity * 2 * sizeof(int));
   arraylist->elements[arraylist->length] = el;
   arraylist->length++;
 }
@@ -34,8 +43,9 @@ int at(struct ArrayList arraylist, int el)
 struct ArrayList init()
 {
   return (struct ArrayList){
-      .elements = malloc(0 * sizeof(int)),
+      .elements = malloc(10 * sizeof(int)),
       .length = 0,
+      .capacity = 10,
       .deinit = &deinit,
       .push = &push,
       .at = &at,
