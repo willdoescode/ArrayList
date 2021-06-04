@@ -15,29 +15,29 @@ struct ArrayList
   int (*at)(struct ArrayList, int);
 };
 
-void deinit(struct ArrayList *arraylist)
+void deinit(struct ArrayList *self)
 {
-  free(arraylist->elements);
+  free(self->elements);
 }
 
-void push(struct ArrayList *arraylist, int el)
+void push(struct ArrayList *self, int el)
 {
-  if (arraylist->length < arraylist->capacity)
+  if (self->length < self->capacity)
   {
-    arraylist->elements[arraylist->length] = el;
-    arraylist->length++;
+    self->elements[self->length] = el;
+    self->length++;
     return;
   }
   // arraylist->elements = realloc(arraylist->elements, arraylist->length * sizeof(int));
 
-  arraylist->elements = realloc(arraylist->elements, arraylist->capacity * 2 * sizeof(int));
-  arraylist->elements[arraylist->length] = el;
-  arraylist->length++;
+  self->elements = realloc(self->elements, self->capacity * 2 * sizeof(int));
+  self->elements[self->length] = el;
+  self->length++;
 }
 
-int at(struct ArrayList arraylist, int el)
+int at(struct ArrayList self, int el)
 {
-  return arraylist.elements[el];
+  return self.elements[el];
 }
 
 struct ArrayList init()
