@@ -6,8 +6,8 @@
 struct ArrayList
 {
   int *elements;
-  int length;
-  int capacity;
+  unsigned int length;
+  unsigned int capacity;
   void (*deinit)(struct ArrayList *);
   void (*push)(struct ArrayList *, int);
   int (*at)(struct ArrayList, int);
